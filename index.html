@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAWSPORT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ BACKGROUND ══ -->
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ TOP BAR ══ -->
+<header class="topbar">
+  <div class="topbar-logo">
+    <span class="logo-paw">🐾</span>
+    <span class="logo-text">PAWSPORT</span>
+  </div>
+  <div class="topbar-tag">
+    <span class="tag-dot"></span>
+    AI Breed Intelligence
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════ MAIN ══ -->
+<main>
+
+  <!-- ── SCREEN 1: HOME ───────────────────────────────────────── -->
+  <section id="screen-home" class="screen active">
+
+    <!-- Passport cover card -->
+    <div class="passport-cover">
+      <div class="passport-cover-top">
+        <div class="passport-emblem">🐾</div>
+        <p class="passport-subtitle">INTERNATIONAL</p>
+        <h1 class="passport-title">PAWSPORT</h1>
+        <p class="passport-subtitle">BREED INTELLIGENCE</p>
+      </div>
+      <div class="passport-divider"></div>
+      <p class="passport-body">Upload a photo of your dog and we'll identify their breed, trace their geographic origins, and pull live weather from their homeland.</p>
+
+      <!-- Drop zone -->
+      <div class="dropzone" id="dropzone">
+        <div class="dropzone-inner">
+          <div class="dropzone-icon">📷</div>
+          <p class="dropzone-primary">Drop your dog's photo here</p>
+          <p class="dropzone-secondary">JPG, PNG, WEBP — up to 20MB</p>
+          <button class="btn-browse" id="btn-browse">Browse Files</button>
+        </div>
+        <div class="dropzone-preview hidden" id="preview-wrap">
+          <img id="preview-img" alt="Dog preview" />
+          <button class="preview-remove" id="preview-remove">✕</button>
+        </div>
+      </div>
+
+      <button class="btn-analyze" id="btn-analyze" disabled>
+        <span class="btn-analyze-text">Analyze Dog</span>
+        <span class="btn-analyze-icon">→</span>
+      </button>
+
+      <!-- Stamp row -->
+      <div class="stamp-row">
+        <div class="stamp stamp-blue">9 BREEDS</div>
+        <div class="stamp stamp-red">AI POWERED</div>
+        <div class="stamp stamp-green">LIVE WEATHER</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── SCREEN 2: LOADING ─────────────────────────────────────── -->
+  <section id="screen-loading" class="screen">
+    <div class="loading-card">
+      <div class="paw-spinner">
+        <span>🐾</span>
+      </div>
+      <p class="loading-title">Scanning Passport…</p>
+      <p class="loading-sub" id="loading-msg">Analyzing fur patterns</p>
+      <div class="loading-bar"><div class="loading-fill" id="loading-fill"></div></div>
+    </div>
+  </section>
+
+  <!-- ── SCREEN 3: RESULTS ─────────────────────────────────────── -->
+  <section id="screen-results" class="screen">
+
+    <div class="results-layout">
+
+      <!-- Left: Passport booklet -->
+      <div class="passport-booklet">
+        <!-- Cover -->
+        <div class="booklet-cover">
+          <p class="booklet-label">INTERNATIONAL</p>
+          <div class="booklet-paw">🐾</div>
+          <p class="booklet-title">PAWSPORT</p>
+        </div>
+
+        <!-- Pages -->
+        <div class="booklet-pages">
+
+          <!-- Photo page -->
+          <div class="page-photo">
+            <div class="photo-frame">
+              <img id="result-photo" src="" alt="Dog" />
+            </div>
+            <div class="photo-meta">
+              <div class="meta-row">
+                <span class="meta-label">HOLDER</span>
+                <span class="meta-value" id="r-breed">—</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">ORIGIN</span>
+                <span class="meta-value" id="r-origin">—</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">CONF.</span>
+                <span class="meta-value" id="r-conf">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stamp page -->
+          <div class="page-stamps">
+            <p class="stamps-header">STAMPS &amp; VISAS</p>
+            <div class="stamps-grid" id="stamps-grid">
+              <!-- filled by JS -->
+            </div>
+            <div class="entry-stamp" id="entry-stamp">
+              <p class="entry-stamp-label">ENTRY GRANTED</p>
+              <p class="entry-stamp-date" id="entry-date"></p>
+              <p class="entry-stamp-city" id="entry-city"></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Info cards -->
+      <div class="info-column">
+
+        <!-- Breed card -->
+        <div class="info-card card-breed">
+          <div class="info-card-header">
+            <span class="card-emoji" id="r-emoji">🐕</span>
+            <div>
+              <p class="card-label">IDENTIFIED BREED</p>
+              <h2 class="card-breed-name" id="r-breed-name">—</h2>
+            </div>
+            <div class="confidence-badge" id="r-conf-badge">—%</div>
+          </div>
+          <p class="card-description" id="r-description">—</p>
+        </div>
+
+        <!-- Origin card -->
+        <div class="info-card card-origin">
+          <p class="card-label">📍 HOMELAND</p>
+          <div class="origin-row">
+            <div class="origin-country" id="r-country">—</div>
+            <div class="origin-city">
+              <span class="origin-city-label">Nearest city</span>
+              <span class="origin-city-name" id="r-city">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weather card -->
+        <div class="info-card card-weather">
+          <p class="card-label">🌤 HOMELAND WEATHER</p>
+          <div class="weather-main">
+            <div class="weather-temp" id="w-temp">—°C</div>
+            <div class="weather-right">
+              <div class="weather-desc" id="w-desc">—</div>
+              <div class="weather-stats">
+                <span>💧 <b id="w-humidity">—</b>%</span>
+                <span>💨 <b id="w-wind">—</b> km/h</span>
+                <span>🌡 Feels <b id="w-feels">—</b>°C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <button class="btn-retry" id="btn-retry">
+          ← Try Another Dog
+        </button>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── SCREEN 4: ERROR ───────────────────────────────────────── -->
+  <section id="screen-error" class="screen">
+    <div class="error-card">
+      <div class="error-icon">🚫</div>
+      <h2 class="error-title">Something went wrong</h2>
+      <p class="error-msg" id="error-msg">An unexpected error occurred.</p>
+      <button class="btn-retry" id="btn-error-retry">← Try Again</button>
+    </div>
+  </section>
+
+</main>
+
+<input type="file" id="file-input" accept="image/*" style="display:none" />
+
+<script src="renderer.js"></script>
+</body>
+</html>
