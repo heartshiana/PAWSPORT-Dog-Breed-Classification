@@ -1,4 +1,4 @@
-# PAWSPORT — Setup Guide
+<img width="1354" height="496" alt="image" src="https://github.com/user-attachments/assets/44528062-808b-4e0e-ba47-07ac2c8cdb32" /># PAWSPORT — Setup Guide
 
 
 ## Quickstart (Windows)
@@ -94,6 +94,19 @@ PAWSPORT/
 
 ---
 
-## 🌐 API Key
+## API Key
 
 OpenWeatherMap key is pre-configured in `server.py`. No action needed.
+
+---
+
+## Author
+
+Heart Shiana Ursua
+
+![Uploading UI (1).png…]()
+<img width="1354" height="496" alt="UI (2)" src="https://github.com/user-attachments/assets/ef6fc857-41c0-4377-92c7-20344326b46b" />
+
+
+
+
