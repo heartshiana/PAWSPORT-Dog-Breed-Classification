@@ -1,4 +1,4 @@
-# Quickstart (Windows)
+# PAWSPORT - Dog Breed Classification
 
 1. Double-click **`launch.bat`**
    - It checks for Node.js and Python automatically
