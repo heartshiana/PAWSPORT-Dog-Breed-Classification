@@ -1,5 +1,6 @@
 # PAWSPORT - Dog Breed Classification
 
+# How to Use
 1. Double-click **`launch.bat`**
    - It checks for Node.js and Python automatically
    - Installs all dependencies if missing
